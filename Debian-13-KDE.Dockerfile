@@ -97,6 +97,14 @@ RUN apt-get update && \
         echo "--> [mobile] 正在移除 ModemManager (容器内无真实 modem 硬件，会导致开机卡住)..." && \
         apt-get purge -y --auto-remove modemmanager || true; \
     fi && \
+    if [ "$BUILD_KDE" = "strm" ]; then \
+        apt install kde-plasma-desktop plasma-discover
+    if [ "$BUILD_KDE" = "std" ]; then \
+        apt install apt install kde-standard; \
+    fi && \
+    if [ "$BUILD_KDE" = "full" ]; then \
+        apt install kde-full; \
+    fi && \
     ############################################## anland_kde(wayland) 支持 ################################################
     if [ "$ENABLE_anland_kde_ARG" = "true" ] && ([ "$BUILD_KDE" = "min" ] || [ "$BUILD_KDE" = "conc" ] || [ "$BUILD_KDE" = "mobile" ]); then \
         if [ -z "$ANLAND_KDE_RELEASE_TAG" ]; then \
