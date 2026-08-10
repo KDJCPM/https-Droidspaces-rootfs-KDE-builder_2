@@ -98,13 +98,13 @@ RUN apt-get update && \
         apt-get purge -y --auto-remove modemmanager || true; \
     fi && \
     if [ "$BUILD_KDE" = "strm" ]; then \
-        apt install kde-plasma-desktop plasma-discover; \
+        apt install -y kde-plasma-desktop plasma-discover; \
     fi && \
     if [ "$BUILD_KDE" = "std" ]; then \
-        apt install apt install kde-standard; \
+        apt install -y kde-standard; \
     fi && \
     if [ "$BUILD_KDE" = "full" ]; then \
-        apt install kde-full; \
+        apt install -y kde-full; \
     fi && \
     ############################################## anland_kde(wayland) 支持 ################################################
     if [ "$ENABLE_anland_kde_ARG" = "true" ] && ([ "$BUILD_KDE" = "min" ] || [ "$BUILD_KDE" = "conc" ] || [ "$BUILD_KDE" = "mobile" ]); then \
