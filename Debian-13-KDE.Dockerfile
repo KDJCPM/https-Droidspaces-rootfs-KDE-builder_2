@@ -68,25 +68,23 @@ RUN apt-get update && \
     # 最小化KDE
     if [ "$BUILD_KDE" = "min" ]; then \
         apt-get install -y --no-install-recommends \
-        dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole \
-        dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session ＼
-        discover \
+        dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole discover \
+        dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session; \
     fi && \
     # 精简KDE
     if [ "$BUILD_KDE" = "conc" ]; then \
         apt-get install -y --no-install-recommends \
         dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole \
         dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session aha clinfo dmidecode libdisplay-info-bin wayland-utils xserver-xorg \
-        kfind plasma-systemmonitor filelight glmark2 vkmark systemsettings kde-config-screenlocker kio-extras xdg-user-dirs dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers \
+        discover kfind plasma-systemmonitor filelight glmark2 vkmark systemsettings kde-config-screenlocker kio-extras xdg-user-dirs dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers \
         kimageformat6-plugins webext-plasma-browser-integration libcanberra-pulse gstreamer1.0-plugins-base gstreamer1.0-plugins-good sound-theme-freedesktop chromium chromium-l10n \
-        discover \
         systemsettings kde-config-screenlocker kio-extras xdg-user-dirs; \
     fi && \
     # mobile版KDE
     if [ "$BUILD_KDE" = "mobile" ]; then \
         apt-get install -y --no-install-recommends \
         dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji wayland-utils xserver-xorg dbus-user-session \
-        plasma-nano plasma-mobile plasma-mobile-phone maliit-keyboard maliit-framework \
+        discover plasma-nano plasma-mobile plasma-mobile-phone maliit-keyboard maliit-framework \
         kwin-wayland pipewire pipewire-pulse wireplumber powerdevil plasma-pa upower pulseaudio-utils \
         konsole dolphin kate kinfocenter mesa-utils vulkan-tools \
         systemsettings plasma-systemmonitor kde-config-screenlocker kio-extras xdg-user-dirs \
@@ -95,7 +93,6 @@ RUN apt-get update && \
         gstreamer1.0-plugins-base gstreamer1.0-plugins-good sound-theme-freedesktop libcanberra-pulse \
         polkit-kde-agent-1 libpam-systemd libpam-modules libpam-kwallet5 \
         breeze-icon-theme plasma-desktoptheme libqt6svg6 qt6-svg-plugins \
-        discover \
         qml6-module-org-kde-kirigami qml6-module-qtquick-controls qml6-module-qtquick-layouts qml6-module-qtquick-templates && \
         echo "--> [mobile] 正在移除 ModemManager (容器内无真实 modem 硬件，会导致开机卡住)..." && \
         apt-get purge -y --auto-remove modemmanager || true; \
