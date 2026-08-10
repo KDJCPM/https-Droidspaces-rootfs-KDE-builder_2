@@ -98,7 +98,8 @@ RUN apt-get update && \
         apt-get purge -y --auto-remove modemmanager || true; \
     fi && \
     if [ "$BUILD_KDE" = "strm" ]; then \
-        apt install kde-plasma-desktop plasma-discover
+        apt install kde-plasma-desktop plasma-discover; \
+    fi && \
     if [ "$BUILD_KDE" = "std" ]; then \
         apt install apt install kde-standard; \
     fi && \
