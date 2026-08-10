@@ -29,12 +29,13 @@ on:
         type: choice
         default: 'min'
         options: 
+          - 'full'
+          - 'std'
+          - 'strm'
           - 'conc'
           - 'min'
           - 'mobile'
           - 'none'
-          - 'full'
-          - 'std'
       build_KDE_plus:
         description: 'KDE 桌面开机自启动 (需要 KDE 桌面选择为 conc、min 或 mobile)'
         required: true
