@@ -70,7 +70,7 @@ RUN apt-get update && \
         apt-get install -y --no-install-recommends \
         dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole \
         dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session ＼
-        discover; \
+        discover \
     fi && \
     # 精简KDE
     if [ "$BUILD_KDE" = "conc" ]; then \
