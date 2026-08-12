@@ -106,7 +106,7 @@ RUN apt-get update && \
         systemsettings kde-config-screenlocker kio-extras xdg-user-dirs; \
     fi && \
     if [ "$BUILD_KDE" = "std" ]; then \
-        apt install --no-install-recommends -y kde-standard \
+        apt install --no-install-recommends -y kde-standard plasma-discover \
         dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole \
         dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session aha clinfo dmidecode libdisplay-info-bin wayland-utils xserver-xorg \
         kfind plasma-systemmonitor filelight glmark2 vkmark systemsettings kde-config-screenlocker kio-extras xdg-user-dirs dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers \
@@ -114,7 +114,7 @@ RUN apt-get update && \
         systemsettings kde-config-screenlocker kio-extras xdg-user-dirs; \
     fi && \
     if [ "$BUILD_KDE" = "full" ]; then \
-        apt install --no-install-recommends -y kde-full \
+        apt install --no-install-recommends -y kde-full plasma-discover \
         dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole \
         dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session aha clinfo dmidecode libdisplay-info-bin wayland-utils xserver-xorg \
         kfind plasma-systemmonitor filelight glmark2 vkmark systemsettings kde-config-screenlocker kio-extras xdg-user-dirs dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers \
