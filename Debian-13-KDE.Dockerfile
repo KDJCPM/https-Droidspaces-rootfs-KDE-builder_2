@@ -99,11 +99,12 @@ RUN apt-get update && \
     fi && \
     if [ "$BUILD_KDE" = "strm" ]; then \
         apt install --no-install-recommends -y kde-plasma-desktop plasma-discover \
-        dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji kde-plasma-desktop pipewire pipewire-pulse wireplumber powerdevil kscreen plasma-pa ark kwin-x11 upower konsole \
-        dolphin kate kinfocenter mesa-utils pulseaudio-utils vulkan-tools  desktop-base dbus-user-session aha clinfo dmidecode libdisplay-info-bin wayland-utils xserver-xorg \
-        kfind plasma-systemmonitor filelight glmark2 vkmark systemsettings kde-config-screenlocker kio-extras xdg-user-dirs dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers \
-        kimageformat6-plugins webext-plasma-browser-integration libcanberra-pulse gstreamer1.0-plugins-base gstreamer1.0-plugins-good sound-theme-freedesktop chromium chromium-l10n \
-        systemsettings kde-config-screenlocker kio-extras xdg-user-dirs; \
+        dbus-x11 x11-xserver-utils fonts-noto-cjk fonts-noto-color-emoji \
+        pipewire pipewire-pulse wireplumber upower mesa-utils pulseaudio-utils \
+        vulkan-tools desktop-base dbus-user-session aha clinfo dmidecode \
+        libdisplay-info-bin wayland-utils xserver-xorg glmark2 vkmark \
+        libcanberra-pulse gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+        sound-theme-freedesktop chromium chromium-l10n; \
     fi && \
     if [ "$BUILD_KDE" = "std" ]; then \
         apt install --no-install-recommends -y kde-standard \
