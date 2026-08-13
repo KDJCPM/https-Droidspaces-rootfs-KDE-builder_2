@@ -1,4 +1,4 @@
-name: 编译并发布 Droidspaces RootFS
+name: 构建并发布 Droidspaces RootFS
 
 on:
   workflow_dispatch: 
