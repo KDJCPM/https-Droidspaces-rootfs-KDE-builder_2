@@ -28,6 +28,7 @@ on:
         required: false
         type: string
         default: '2000'
+        pattern: '^[0-9]+$'
       build_KDE:
         description: 'KDE桌面选择(conc-精简 min-最小构造 mobile-移动版 none-不用KDE)'
         required: true
