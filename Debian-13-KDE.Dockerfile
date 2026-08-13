@@ -236,7 +236,7 @@ RUN if [ "$PulseAudio" = "socket" ]; then \
 
 # 输入法开机自启动
 COPY scripts/start/ /tmp/droidspaces-start/
-RUN sed -i "s/^.*uid=2000.*$/uid=$BUILD_KDE/" /tmp/droidspaces-start/*
+RUN sed -i "s/^.*uid=2000.*$/uid=$CUSTOM_UID/" /tmp/droidspaces-start/*
 RUN <<'EOF_RUN'
     if [ "$ENABLE_srf_ARG" = "true" ]; then
     mkdir -p /home/${USERNAME}/.config/autostart
