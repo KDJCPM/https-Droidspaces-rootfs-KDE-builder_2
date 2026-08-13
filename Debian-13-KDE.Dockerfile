@@ -7,6 +7,7 @@ ARG BUILD_KDE_plus
 ARG PulseAudio
 ARG ENABLE_zh_tz_ARG
 ARG ENABLE_binfmt_ARG
+ARG CUSTOM_UID
 ARG ENABLE_yj_ARG
 ARG ENABLE_mesa_ARG
 ARG ENABLE_kfgj_ARG
@@ -235,6 +236,7 @@ RUN if [ "$PulseAudio" = "socket" ]; then \
 
 # 输入法开机自启动
 COPY scripts/start/ /tmp/droidspaces-start/
+RUN sed -i "s/^.*uid=2000.*$/uid=$BUILD_KDE/" /tmp/droidspaces-start/*
 RUN <<'EOF_RUN'
     if [ "$ENABLE_srf_ARG" = "true" ]; then
     mkdir -p /home/${USERNAME}/.config/autostart
