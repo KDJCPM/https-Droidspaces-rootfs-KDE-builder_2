@@ -1,4 +1,4 @@
-name: 构建并发布 Anland KDE Wayland 软件包
+name: 编译并发布 Anland KDE Wayland 软件包
 run-name: Anland KDE 软件包 ${{ inputs.request_id || github.run_number }}
 
 on:
