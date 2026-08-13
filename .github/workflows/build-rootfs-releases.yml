@@ -24,11 +24,12 @@ on:
         type: string
         default: 'Gold'
       custom_uid:
-        description: '自定义桌面启动uid（默认 2000）'
+        description: '选择桌面启动uid'
         required: false
-        type: string
-        default: '2000'
-        pattern: '^[0-9]+$'
+        type: choice
+        options:
+         - '2000'
+         - '0'
       build_KDE:
         description: 'KDE桌面选择(conc-精简 min-最小构造 mobile-移动版 none-不用KDE)'
         required: true
