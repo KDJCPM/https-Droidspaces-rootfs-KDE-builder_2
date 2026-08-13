@@ -23,7 +23,7 @@ on:
         required: false
         type: string
         default: 'Gold'
-     custom_uid:
+      custom_uid:
         description: '自定义桌面启动uid（默认 2000）'
         required: false
         type: string
@@ -151,7 +151,7 @@ jobs:
           ENABLE_ANLAND_KDE="${{ github.event.inputs.enable_anland_kde }}"
           BUILD_WAYLAND_PACKAGES="${{ github.event.inputs.build_wayland_packages }}"
           PULSE_AUDIO="${{ github.event.inputs.PulseAudio }}"
-          CUSTOM_UID="${{ github.event.inputs.custom_uid }}
+          CUSTOM_UID="${{ github.event.inputs.custom_uid }}"
           WAYLAND_PACKAGE_TARGET=""
           
           case "$TARGET" in
