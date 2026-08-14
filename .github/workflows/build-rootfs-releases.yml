@@ -26,10 +26,8 @@ on:
       custom_uid:
         description: '选择桌面启动uid'
         required: false
-        type: choice
-        options:
-         - '1000'
-         - '0'
+        type: string
+        default: '1000'
       build_KDE:
         description: 'KDE桌面选择(conc-精简 min-最小构造 mobile-移动版 none-不用KDE)'
         required: true
@@ -360,7 +358,8 @@ jobs:
             -S "${{ inputs.enable_systemd257 }}" \
             -t "${{ inputs.enable_8gen2_wayland }}" \
             -A "${{ needs.setup.outputs.wayland_enabled }}" \
-            -u "${{ inputs.custom_username }}"
+            -u "${{ inputs.custom_username }}" \
+            -uid "${{ inputs.custom_uid }}"
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v6
