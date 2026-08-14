@@ -359,7 +359,7 @@ jobs:
             -t "${{ inputs.enable_8gen2_wayland }}" \
             -A "${{ needs.setup.outputs.wayland_enabled }}" \
             -u "${{ inputs.custom_username }}" \
-            -uid "${{ inputs.custom_uid }}"
+            -U "${{ inputs.custom_uid }}"
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v6
