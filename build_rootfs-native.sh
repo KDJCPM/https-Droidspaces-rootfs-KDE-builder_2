@@ -8,7 +8,7 @@ ENABLE_8gen2_wayland="false"
 ENABLE_systemd257="false"
 ENABLE_anland_kde="false"
 # 解析输入参数 (-i 指定 Dockerfile，-v 指定版本号)
-while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:uid:" opt; do
+while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:U:" opt; do
   case $opt in
     i) DOCKERFILE="$OPTARG" ;; # -i 参数赋值给 DOCKERFILE 变量
     v) VERSION="$OPTARG" ;;    # -v 参数赋值给 VERSION 变量
@@ -29,7 +29,7 @@ while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:uid:" opt; do
     t) ENABLE_8gen2_wayland="$OPTARG" ;; # 修复骁龙8 Gen 2 Wayland 花屏
     u) USERNAME="$OPTARG" ;; # 自定义用户名
     A) ENABLE_anland_kde="$OPTARG" ;; # anland_kde 支持
-    uid) CUSTOM_UID="$OPTARG" ;;
+    U) CUSTOM_UID="$OPTARG" ;;
     *) echo "用法: $0 -i <template.Dockerfile> [-v <version>] [-S <true|false>]" ; exit 1 ;;
   esac
 done
