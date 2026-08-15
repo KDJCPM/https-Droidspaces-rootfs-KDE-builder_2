@@ -193,18 +193,17 @@ docker buildx build \
 
 
 
-echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程加速)..."
-if [ "$CNTOOL" = "xz" ]; then
-    xz -T0 -$CNRO -f "$TEMP_TAR"
-else
-    sudo apt-get update && sudo apt-get install -y pigz
-    pigz -$CNRO -f "$TEMP_TAR"
-fi
 
-echo "正在重命名最终文件: $FINAL_NAME"
 if [ "$CNTOOL" = "xz" ]; then
+    echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程加速)..."
+    xz -T0 -$CNRO -f "$TEMP_TAR"
+    echo "正在重命名最终文件: $FINAL_NAME"
     mv "${TEMP_TAR}.xz" "$FINAL_NAME"
 else
+    sudo apt-get update && sudo apt-get install -y pigz
+    echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程加速)..."
+    pigz -$CNRO -f "$TEMP_TAR"
+    echo "正在重命名最终文件: $FINAL_NAME"
     mv "${TEMP_TAR}.gz" "$FINAL_NAME"
 fi
 
