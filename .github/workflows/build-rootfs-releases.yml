@@ -390,7 +390,9 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.template }}-rootfs
-          path: "*.tar.xz"
+          path: |
+                 "*.tar.gz"
+                 "*.tar.xz"
           retention-days: 1
 
   # --------------------------------------------------------
