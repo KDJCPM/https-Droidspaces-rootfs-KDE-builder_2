@@ -215,8 +215,10 @@ fi
 
 if [ $size -gt $max ]; then
     sudo apt-get install -y p7zip-full
-    echo "需要分卷"
+    echo "需要7z分卷"
     7z a -v1800m -mx0 "${file}.7z" "$file"
+    echo "移除分卷的源文件"
+    rm -rf "$FINAL_NAME"
  else
     echo "文件未超过1.8GB，无需分卷"
  fi
