@@ -393,6 +393,7 @@ jobs:
           path: |
                  *.tar.gz
                  *.tar.xz
+                 *.7z.*
           retention-days: 1
 
   # --------------------------------------------------------
@@ -417,12 +418,29 @@ jobs:
       - name: 整理资源
         run: |
           mkdir -p release_assets
-
+          mv_file() {
           CNTOOL=${{ inputs.cntool }}
           if [ "$CNTOOL" = "xz" ]; then
              mv *.tar.xz release_assets/
           else
              mv *.tar.gz release_assets/
+          fi
+          }
+
+          
+          
+          if [ "$CNTOOL" = "xz" ]; then
+             file="$(ls *.tar.xz")
+          else
+             file="$(ls *.tar.gz")
+          fi
+          size=$(stat -c %s "$file")
+          max=$((1932735283))
+
+          if [ $size -gt $max ]; then
+              mv *.7z.* release_assets/
+          else
+              mv_file
           fi
 
           PA_CHOICE="${{ needs.setup.outputs.pulseaudio_effective }}"
