@@ -150,7 +150,12 @@ elif [ "$ENABLE_anland_kde" = "true" ]; then
 else
   DISPLAY_BACKEND="X11"
 fi
-FINAL_NAME="${PREFIX}-${DISPLAY_BACKEND}-Droidspaces-rootfs-${ARCH}-${VERSION}.tar.xz"
+
+if [ "$CNTOOL" = "xz" ]; then
+    FINAL_NAME="${PREFIX}-${DISPLAY_BACKEND}-Droidspaces-rootfs-${ARCH}-${VERSION}.tar.xz"
+else
+    FINAL_NAME="${PREFIX}-${DISPLAY_BACKEND}-Droidspaces-rootfs-${ARCH}-${VERSION}.tar.gz"
+fi
 
 echo "正在运行 Docker Build (原生模式)..."
 
@@ -200,7 +205,6 @@ echo "正在重命名最终文件: $FINAL_NAME"
 if [ "$CNTOOL" = "xz" ]; then
     mv "${TEMP_TAR}.xz" "$FINAL_NAME"
 else
-    sudo apt-get update && sudo apt-get install -y pigz
     mv "${TEMP_TAR}.gz" "$FINAL_NAME"
 fi
 
