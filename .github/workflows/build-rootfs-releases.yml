@@ -415,7 +415,14 @@ jobs:
       - name: 整理资源
         run: |
           mkdir -p release_assets
-          mv *.tar.xz release_assets/
+
+          CNTOOL=${{ inputs.cntool }}
+          if [ "$CNTOOL" = "xz" ]; then
+             mv *.tar.xz release_assets/
+          else
+             mv *.tar.gz release_assets/
+          fi
+
           PA_CHOICE="${{ needs.setup.outputs.pulseaudio_effective }}"
           CUSTOM_USERNAME="${{ github.event.inputs.custom_username }}"
           build_KDE_plus="${{ github.event.inputs.build_KDE_plus }}"
