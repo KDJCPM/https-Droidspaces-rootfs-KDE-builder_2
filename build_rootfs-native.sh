@@ -197,15 +197,29 @@ docker buildx build \
 if [ "$CNTOOL" = "xz" ]; then
     echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程加速)..."
     xz -T0 -$CNRO -f "$TEMP_TAR"
-    echo "正在重命名最终文件: $FINAL_NAME"
+    echo "正在重命名文件: $FINAL_NAME"
     mv "${TEMP_TAR}.xz" "$FINAL_NAME"
 else
     sudo apt-get update && sudo apt-get install -y pigz
     echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程加速)..."
     pigz -$CNRO -f "$TEMP_TAR"
-    echo "正在重命名最终文件: $FINAL_NAME"
+    echo "正在重命名文件: $FINAL_NAME"
     mv "${TEMP_TAR}.gz" "$FINAL_NAME"
 fi
+
+#判断是否需要分卷
+
+    file="$FINAL_NAME"
+    size=$(stat -c %s "$file")
+    max=$((1932735283))
+
+if [ $size -gt $max ]; then
+    echo "需要分卷"
+    7z a -v1800m -mx0 "${file}.7z" "$file"
+ else
+    echo "文件未超过1.8GB，无需分卷"
+ fi
+
 
 echo "========================================================="
 echo " 恭喜！构建成功完成: $FINAL_NAME"
