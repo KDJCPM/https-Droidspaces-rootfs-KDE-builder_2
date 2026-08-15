@@ -125,7 +125,30 @@ on:
         required: true
         type: boolean
         default: false
-
+      cntool:
+        description: '压缩工具(默认xz)'
+        required: true
+        type: choice
+        default: 'xz'
+        options: 
+        - 'xz'
+        - 'gzip'
+      cnro:
+        description: '压缩级别(默认9)'
+        required: true
+        type: choice
+        default: '9'
+        options: 
+        - '0'
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        - '5'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
 jobs:
   # --------------------------------------------------------
   # 阶段 1: setup (环境准备与变量生成)
@@ -359,7 +382,9 @@ jobs:
             -t "${{ inputs.enable_8gen2_wayland }}" \
             -A "${{ needs.setup.outputs.wayland_enabled }}" \
             -u "${{ inputs.custom_username }}" \
-            -U "${{ inputs.custom_uid }}"
+            -U "${{ inputs.custom_uid }}" \
+            -C "${{ inputs.cntool }}" \
+            -R "${{ inputs.cnro }}"
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v6
