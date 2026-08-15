@@ -427,21 +427,15 @@ jobs:
           fi
           }
 
-          
-          
-          if [ "$CNTOOL" = "xz" ]; then
-             file="$(ls *.tar.xz)"
-          else
-             file="$(ls *.tar.gz)"
-          fi
-          size=$(stat -c %s "$file")
-          max=$((1932735283))
-
-          if [ $size -gt $max ]; then
-              mv *.7z.* release_assets/
-          else
+           if find . -maxdepth 1 -type f \( -name "*.tar.gz" -o -name "*.tar.xz" \) | grep -q .; then
+              echo ".tar.xz/.tar.gz存在"
+              echo "移动.tar.xz/.tar.gz压缩文件"
               mv_file
-          fi
+           else
+              echo ".tar.xz/.tar.gz不存在"
+              echo "移动7z分包"
+              mv *.7z.* release_assets/
+           fi
 
           PA_CHOICE="${{ needs.setup.outputs.pulseaudio_effective }}"
           CUSTOM_USERNAME="${{ github.event.inputs.custom_username }}"
