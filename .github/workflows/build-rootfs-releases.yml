@@ -132,7 +132,7 @@ on:
         default: 'xz'
         options: 
         - 'xz'
-        - 'gzip'
+        - 'pigz'
       cnro:
         description: '压缩级别(默认9)'
         required: true
