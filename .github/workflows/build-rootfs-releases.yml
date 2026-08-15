@@ -391,8 +391,8 @@ jobs:
         with:
           name: ${{ matrix.template }}-rootfs
           path: |
-                 "*.tar.gz"
-                 "*.tar.xz"
+                 *.tar.gz
+                 *.tar.xz
           retention-days: 1
 
   # --------------------------------------------------------
