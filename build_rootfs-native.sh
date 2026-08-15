@@ -197,7 +197,12 @@ else
 fi
 
 echo "正在重命名最终文件: $FINAL_NAME"
-mv "${TEMP_TAR}.xz" "$FINAL_NAME"
+if [ "$CNTOOL" = "xz" ]; then
+    mv "${TEMP_TAR}.xz" "$FINAL_NAME"
+else
+    sudo apt-get update && sudo apt-get install -y pigz
+    mv "${TEMP_TAR}.gz" "$FINAL_NAME"
+fi
 
 echo "========================================================="
 echo " 恭喜！构建成功完成: $FINAL_NAME"
