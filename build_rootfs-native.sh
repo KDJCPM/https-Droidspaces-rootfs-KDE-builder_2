@@ -31,7 +31,7 @@ while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:U:C:R:" opt; do
     A) ENABLE_anland_kde="$OPTARG" ;; # anland_kde 支持
     U) CUSTOM_UID="$OPTARG" ;;
     C) CNTOOL="$OPTARG" ;;
-    R) CNRO="$OPTARG"
+    R) CNRO="$OPTARG" ;;
     *) echo "用法: $0 -i <template.Dockerfile> [-v <version>] [-S <true|false>]" ; exit 1 ;;
   esac
 done
