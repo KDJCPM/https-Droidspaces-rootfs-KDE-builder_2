@@ -430,9 +430,9 @@ jobs:
           
           
           if [ "$CNTOOL" = "xz" ]; then
-             file="$(ls *.tar.xz")
+             file="$(ls *.tar.xz)"
           else
-             file="$(ls *.tar.gz")
+             file="$(ls *.tar.gz)"
           fi
           size=$(stat -c %s "$file")
           max=$((1932735283))
