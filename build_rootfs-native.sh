@@ -8,7 +8,7 @@ ENABLE_8gen2_wayland="false"
 ENABLE_systemd257="false"
 ENABLE_anland_kde="false"
 # 解析输入参数 (-i 指定 Dockerfile，-v 指定版本号)
-while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:U:" opt; do
+while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:U:C:R:" opt; do
   case $opt in
     i) DOCKERFILE="$OPTARG" ;; # -i 参数赋值给 DOCKERFILE 变量
     v) VERSION="$OPTARG" ;;    # -v 参数赋值给 VERSION 变量
@@ -30,6 +30,8 @@ while getopts "i:v:K:L:P:a:b:c:d:e:f:g:h:j:n:S:t:u:A:U:" opt; do
     u) USERNAME="$OPTARG" ;; # 自定义用户名
     A) ENABLE_anland_kde="$OPTARG" ;; # anland_kde 支持
     U) CUSTOM_UID="$OPTARG" ;;
+    C) CNTOOL="$OPTARG" ;;
+    R) CNRO="$OPTARG"
     *) echo "用法: $0 -i <template.Dockerfile> [-v <version>] [-S <true|false>]" ; exit 1 ;;
   esac
 done
@@ -186,8 +188,12 @@ docker buildx build \
 
 
 
-echo "正在压缩构建产物 (使用 xz 最高压缩率 - 开启多线程加速)..."
-xz -T0 -9 -f "$TEMP_TAR"
+echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程加速)..."
+if [ "$CNTOOL" = "xz" ]; then
+    xz -T0 -$CNRO -f "$TEMP_TAR"
+else
+    gzip -$CNRO -f "$TEMP_TAR"
+fi
 
 echo "正在重命名最终文件: $FINAL_NAME"
 mv "${TEMP_TAR}.xz" "$FINAL_NAME"
