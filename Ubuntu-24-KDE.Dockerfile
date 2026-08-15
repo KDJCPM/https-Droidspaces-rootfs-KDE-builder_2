@@ -3,6 +3,7 @@ FROM ubuntu:24.04 AS customizer
 
 #######################################################
 ARG BUILD_KDE
+ARG CUSTOM_UID
 ARG BUILD_KDE_plus
 ARG PulseAudio
 ARG ENABLE_zh_tz_ARG
@@ -140,7 +141,7 @@ RUN sed -i '/en_US.UTF-8/s/^# //' /etc/locale.gen && \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
     # 如果容器内存在默认的 debian 用户，则将其连同家目录一起删除
     deluser --remove-home ubuntu || true && \
-    useradd -m -s /bin/bash ${USERNAME} && echo "${USERNAME}:1234" | chpasswd && \
+    if [ "${CUSTOM_UID:-}" = "0" ]; then useradd -m -s /bin/bash "${USERNAME}"; else useradd -m -s /bin/bash -o -u "${CUSTOM_UID}" "${USERNAME}"; fi && echo "${USERNAME}:1234" | chpasswd && \
     systemctl enable ssh
 
 # 为所有 Ubuntu RootFS 安装 Droidspaces USB Manager
@@ -160,6 +161,7 @@ RUN if [ "$PulseAudio" = "socket" ]; then \
 
 # 输入法开机自启动
 COPY scripts/start/ /tmp/droidspaces-start/
+RUN sed -i "s/^.*User=1000.*$/User=$CUSTOM_UID/" /tmp/droidspaces-start/*
 RUN <<'EOF_RUN'
     if [ "$ENABLE_srf_ARG" = "true" ]; then
     mkdir -p /home/${USERNAME}/.config/autostart
