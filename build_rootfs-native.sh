@@ -192,7 +192,8 @@ echo "正在压缩构建产物 (使用 $CNTOOL $CNRO压缩率 - 开启多线程�
 if [ "$CNTOOL" = "xz" ]; then
     xz -T0 -$CNRO -f "$TEMP_TAR"
 else
-    gzip -$CNRO -f "$TEMP_TAR"
+    sudo apt-get update && sudo apt-get install -y pigz
+    pigz -$CNRO -f "$TEMP_TAR"
 fi
 
 echo "正在重命名最终文件: $FINAL_NAME"
