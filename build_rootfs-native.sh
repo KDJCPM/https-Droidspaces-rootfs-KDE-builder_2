@@ -214,6 +214,7 @@ fi
     max=$((1932735283))
 
 if [ $size -gt $max ]; then
+    sudo apt-get install -y p7zip-full
     echo "需要分卷"
     7z a -v1800m -mx0 "${file}.7z" "$file"
  else
