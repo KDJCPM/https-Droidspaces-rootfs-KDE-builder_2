@@ -3,6 +3,7 @@ FROM fedora:43 AS customizer
 
 #######################################################
 ARG BUILD_KDE
+ARG CUSTOM_UID
 ARG BUILD_KDE_plus
 ARG PulseAudio
 ARG ENABLE_zh_tz_ARG
@@ -198,6 +199,7 @@ RUN if [ "$PulseAudio" = "socket" ]; then \
 
 # 输入法开机自启动
 COPY scripts/start/ /tmp/droidspaces-start/
+RUN sed -i "s/^.*User=1000.*$/User=$CUSTOM_UID/" /tmp/droidspaces-start/*
 RUN <<'EOF_RUN'
     if [ "$ENABLE_srf_ARG" = "true" ]; then
     mkdir -p /home/${USERNAME}/.config/autostart
