@@ -161,7 +161,7 @@ RUN if [ "$ENABLE_zh_tz_ARG" = "true" ]; then \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
     # 删除默认可能存在的用户并创建新用户
     (userdel -r debian 2>/dev/null || true) && \
-    useradd -m -s /bin/bash ${USERNAME} && echo "${USERNAME}:1234" | chpasswd 
+    if [ "${CUSTOM_UID:-}" = "0" ]; then useradd -m -s /bin/bash "${USERNAME}"; else useradd -m -s /bin/bash -o -u "${CUSTOM_UID}" "${USERNAME}"; fi && echo "${USERNAME}:1234" | chpasswd 
 
 # 为所有 Fedora RootFS 安装 Droidspaces USB Manager
 RUN /usr/local/sbin/install-droidspaces-usb-manager --user "${USERNAME}"
