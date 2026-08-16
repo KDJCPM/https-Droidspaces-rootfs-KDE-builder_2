@@ -29,7 +29,7 @@ on:
         type: string
         default: '1000'
       build_KDE:
-        description: 'KDE桌面选择(conc-精简 min-最小构造 mobile-移动版 none-不用KDE)'
+        description: 'KDE桌面选择(full-完整版 std-标准版 strm-带应用商店的精简版 conc-精简 min-最小构造 mobile-移动版 none-不用KDE)(⚠️stm,std,full只能在Debian/Ubuntu发行版中使用)'
         required: true
         type: choice
         default: 'min'
