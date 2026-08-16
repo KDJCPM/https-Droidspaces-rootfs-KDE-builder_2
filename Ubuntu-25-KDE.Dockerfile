@@ -147,7 +147,7 @@ RUN sed -i '/en_US.UTF-8/s/^# //' /etc/locale.gen && \
     # Ubuntu 默认用户是 ubuntu，删除它避免冲突
     deluser --remove-home ubuntu || true && \
     # 创建自定义用户并直接加入 shadow 组，确保锁屏验证权限
-    if [ "${CUSTOM_UID:-}" = "0" ]; then useradd -m -s /bin/bash "${USERNAME}"; else useradd -m -s /bin/bash -o -u "${CUSTOM_UID}" "${USERNAME}"; fi && echo "${USERNAME}:1234" | chpasswd && \
+    if [ "${CUSTOM_UID:-}" = "0" ]; then useradd -m -s /bin/bash -G shadow "${USERNAME}"; else useradd -m -s /bin/bash -o -u "${CUSTOM_UID}" -G shadow "${USERNAME}"; fi && echo "${USERNAME}:1234" | chpasswd && \
     systemctl enable ssh
 
 # 为所有 Ubuntu RootFS 安装 Droidspaces USB Manager
