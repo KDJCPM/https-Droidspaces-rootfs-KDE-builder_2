@@ -211,7 +211,7 @@ fi
 
     file="$FINAL_NAME"
     size=$(stat -c %s "$file")
-    max=$((1932735283))
+    max=$((2147483648))
 
 if [ $size -gt $max ]; then
     sudo apt-get install -y p7zip-full
