@@ -351,14 +351,6 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
 
-      - name: 验证构建选项
-        run: |
-          if [ "${{ inputs.build_KDE }}" = "none" ] && [ "${{ inputs.build_KDE_plus }}" = "true" ]; then
-            echo "❌ 错误: 当 KDE 桌面选择为 'none' 时，无法启用 KDE 开机自启动"
-            echo "请重新运行工作流，取消勾选 'KDE 桌面开机自启动' 或选择 KDE 桌面"
-            exit 1
-          fi
-
       - name: 编译 RootFS (${{ matrix.template }})
         run: |
           chmod +x build_rootfs-native.sh
