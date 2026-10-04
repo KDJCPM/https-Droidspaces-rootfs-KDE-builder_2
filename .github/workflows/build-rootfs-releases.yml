@@ -217,10 +217,6 @@ jobs:
             exit 1
           fi
 
-          if [ "$ENABLE_ANLAND_KDE" = "true" ] && [ "$BUILD_KDE" = "none" ]; then
-            echo "错误: 启用 Wayland 支持时，KDE 桌面选择不能为 'none'" >&2
-            exit 1
-          fi
 
           if [ "$BUILD_KDE" = "mobile" ]; then
             echo "提示: 选择了移动版 KDE，Wayland 支持已强制启用"
