@@ -108,18 +108,11 @@ RUN chmod +x /usr/local/sbin/install-anland-kde && \
     fi 
 
 # 启用 Anland 时从固定滚动 GitHub Release 安装 ARM64 patched KWin/Xwayland。
-RUN if [ "$ENABLE_anland_kde_ARG" = "true" ]; then \
-        if [ -z "$ANLAND_KDE_RELEASE_TAG" ]; then \
-            echo "A fixed ANLAND_KDE_RELEASE_TAG is required for Docker builds." >&2; \
-            exit 1; \
-        fi && \
-        echo "--> [enabled] Installing Anland KDE packages (${ANLAND_KDE_PACKAGE_REVISION})..." && \
+RUN echo "--> [enabled] Installing Anland KDE packages (${ANLAND_KDE_PACKAGE_REVISION})..." && \
         ANLAND_KDE_RELEASE_REPOSITORY="$ANLAND_KDE_RELEASE_REPOSITORY" \
         ANLAND_KDE_RELEASE_TAG="$ANLAND_KDE_RELEASE_TAG" \
         /usr/local/sbin/install-anland-kde && \
-        echo "--> [enabled] Anland KDE support installed"; \
-    fi
-
+        echo "--> [enabled] Anland KDE support installed"
 # 配置 Locale 与 SSH
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     if [ "$ENABLE_zh_tz_ARG" = "true" ]; then \
